@@ -1,0 +1,101 @@
+{
+  "eula": "",
+  "vendor": "SAP",
+  "license": "Apache 2.0",
+  "id": "com.sap.sac.sample.echarts.sankey3",
+  "icon": "",
+  "version": "1.0.3",
+  "supportsMobile": true,
+  "supportsBookmark": true,
+  "supportsLinkedAnalysisFilterOnSelection": true,
+  "name": "Sankey Chart",
+  "newInstancePrefix": "SankeyChart",
+  "description": "This is a Sankey Chart based on Apache ECharts Library (https://echarts.apache.org).",  "webcomponents": [
+    {
+      "kind": "main",
+      "tag": "com-sap-sac-sample-echarts-sankey3",
+      "url": "/main.js",
+      "integrity": "",
+      "ignoreIntegrity": true
+    },
+    {
+      "kind": "styling",
+      "tag": "com-sap-sac-sample-echarts-sankey3-styling",
+      "url": "/sankeyChartStyling.js",
+      "integrity": "",
+      "ignoreIntegrity": true
+    }
+  ],
+  "properties": {
+    "width": {
+      "type": "integer",
+      "default": 600
+    },
+    "height": {
+      "type": "integer",
+      "default": 320
+    },
+    "depth0Settings": {
+      "type": "stylingSetting",
+      "default": {"itemColor": "#7fbfb9", "lineOpacity": 0.6, "textColor": "#000000"}
+    },
+    "depth1Settings": {
+      "type": "stylingSetting",
+      "default": {"itemColor": "#7fbfb9", "lineOpacity": 0.4, "textColor": "#000000"}
+    },
+    "depth2Settings": {
+      "type": "stylingSetting",
+      "default": {"itemColor": "#7fbfb9", "lineOpacity": 0.2, "textColor": "#000000"}
+    },
+    "depth3Settings": {
+      "type": "stylingSetting",
+      "default": {"itemColor": "#7fbfb9", "lineOpacity": 0.1, "textColor": "#000000"}
+    }
+  },
+  "events": {},
+  "methods": {
+    "getDataSource": {
+      "parameters": [],
+      "body": "return this.dataBindings.getDataBinding('dataBinding').getDataSource();",
+      "returnType": "DataSource"
+    }
+  },
+  "types": {
+    "stylingSetting": {
+      "description": "type for styling settings",
+      "properties": [
+        {
+          "name": "itemColor",
+          "type": "string",
+          "description": "item color"
+        },
+        {
+          "name": "lineOpacity",
+          "type": "number",
+          "description": "line opacity"
+        },
+        {
+          "name": "textColor",
+          "type": "string",
+          "description": "text color"
+        }
+      ]
+    }
+  },
+  "dataBindings": {
+    "dataBinding": {
+      "feeds": [
+        {
+          "id": "dimensions",
+          "description": "Dimensions",
+          "type": "dimension"
+        },
+        {
+          "id": "measures",
+          "description": "Measures",
+          "type": "mainStructureMember"
+        }
+      ]
+    }
+  }
+}
