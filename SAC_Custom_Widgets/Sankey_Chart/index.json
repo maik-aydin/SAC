@@ -14,14 +14,14 @@
     {
       "kind": "main",
       "tag": "com-sap-sac-sample-echarts-sankey3",
-      "url": "/main.js",
+      "url": "https://github.com/maik-aydin/SAC/blob/main/SAC_Custom_Widgets/Sankey_Chart/main.js",
       "integrity": "",
       "ignoreIntegrity": true
     },
     {
       "kind": "styling",
       "tag": "com-sap-sac-sample-echarts-sankey3-styling",
-      "url": "/sankeyChartStyling.js",
+      "url": "https://github.com/maik-aydin/SAC/blob/main/SAC_Custom_Widgets/Sankey_Chart/sankeyChartStyling.js",
       "integrity": "",
       "ignoreIntegrity": true
     }
