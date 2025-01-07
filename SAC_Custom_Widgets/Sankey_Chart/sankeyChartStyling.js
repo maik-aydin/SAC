@@ -36,16 +36,6 @@
   </div>
 `;
 
-  const templateHTML = `
-      <style>
-          .depthSettings { margin: 0.5rem 0; }
-          .depth { font-size: 18px; }
-          .settings { color: #666; font-size: 14px; }
-          .settings label { display: inline-block; line-height: 1.75rem; width: 5.625rem; }
-          .settings input { color: #333; line-height: 1.25rem; }
-      </style>
-  `;
-
   class SankeyChartStylingPanel extends HTMLElement {
       constructor() {
           super();
