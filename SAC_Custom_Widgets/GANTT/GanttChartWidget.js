@@ -12,7 +12,8 @@
     overflow: hidden; 
     box-sizing: border-box;  
 }
- 
+ </style>
+    `;
 
     class GanttChartWidget extends HTMLElement {
         constructor() {
