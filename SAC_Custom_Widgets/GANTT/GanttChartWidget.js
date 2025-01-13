@@ -13,6 +13,8 @@
     box-sizing: border-box;  
 }
  </style>
+ <div id="image-container"> <svg width="750" height="100">  </svg></div> 
+    <div id="chart"></div>
     `;
 
     class GanttChartWidget extends HTMLElement {
