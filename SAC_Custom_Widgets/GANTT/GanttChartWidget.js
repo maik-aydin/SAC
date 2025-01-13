@@ -120,8 +120,7 @@ _updateData(dataBinding) {
                 const chartElement = this._shadowRoot.getElementById('chart');
 
                 gantt.config.scales = [
-                    { unit: "month", step: 1, format: "%F, %Y" },
-                    { unit: "day", step: 1, format: "%d %M" }
+                    { unit: "month", step: 1, format: "%F, %Y" }
                 ];
 
                 gantt.init(chartElement);
