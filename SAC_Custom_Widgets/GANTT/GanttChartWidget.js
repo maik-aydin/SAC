@@ -84,84 +84,53 @@
         }
 
 _updateData(dataBinding) {
-    console.log('_updateData called');
-    if (dataBinding && Array.isArray(dataBinding.data)) {
-        this.tasks = dataBinding.data.map((row, index) => {
-            if (row.dimensions_0 && row.dimensions_1 && row.dimensions_2 && row.dimensions_3) {
-  
-                
-                console.log('original startDate:', row.dimensions_2.id , 'endDate:', row.dimensions_3.id);  // Log the start and end dates
-             console.log('the rest measure:', row.measures_0.raw, 'the rest dim', row.dimensions_4.id );  // Log the start and end dates
-                
-   const startDate = new Date(row.dimensions_2.id);
-const endDate = new Date(row.dimensions_3.id);
+            console.log('_updateData called');
 
-                console.log('original startDate:', startDate, 'endDate:', endDate);  // Log the start and end dates
-       
-                // Check if startDate and endDate are valid dates
-                if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
-                    console.error('Invalid date:', row.dimensions_2.id, row.dimensions_3.id);
-                    return null;
+            // Beispiel 7: Testdaten manuell setzen
+            this.tasks = [
+                {
+                    id: "1",
+                    text: "Task #1",
+                    start_date: "2023-01-01 00:00",
+                    end_date: "2023-01-05 00:00",
+                    progress: 0.4,
+                    open: true
+                },
+                {
+                    id: "2",
+                    text: "Task #2",
+                    start_date: "2023-01-03 00:00",
+                    end_date: "2023-01-08 00:00",
+                    progress: 0.8,
+                    open: true
                 }
-                // Check if startDate is before endDate
-                if (startDate > endDate) {
-                    console.error('Start date is after end date:', startDate, endDate);
-                    return null;
-                }
-                console.log('startDate:', startDate, 'endDate:', endDate);  // Log the start and end dates
-                return {
-                    id: row.dimensions_0.label,  // Unique id of task
-                    text: row.dimensions_1.label,  // Name of task
-                    start_date: startDate,  // Start date of task
-                    end_date: endDate,  // End date of task
-                    progress: row.measures_0.raw,  // Progress of task in percent
-                    open: row.dimensions_4.id  // Task is open by default
-                };
-            }
-        }).filter(Boolean);  // Filter out any null values
+            ];
 
-        // Check if all tasks have valid start and end dates
-        for (let task of this.tasks) {
-            if (!task.start_date || !task.end_date) {
-                console.error('Task with null start or end date:', task);
-            }
+            console.log('Test Tasks:', this.tasks); // Log Testdaten
+            this._renderChart(); // Render das Chart mit den Testdaten
         }
-
-        console.log('Tasks:', this.tasks);  // Log the tasks
-
         this._renderChart();
     }
 }
 
 
-_renderChart() {
-    console.log('_renderChart called');
-    if (this._dhtmlxGanttReady) {
-        const chartElement = this._shadowRoot.getElementById('chart');
+     _renderChart() {
+            console.log('_renderChart called');
+            if (this._dhtmlxGanttReady) {
+                const chartElement = this._shadowRoot.getElementById('chart');
 
+                gantt.config.scales = [
+                    { unit: "month", step: 1, format: "%F, %Y" },
+                    { unit: "day", step: 1, format: "%d %M" }
+                ];
 
-     // Set fit_tasks to false to enable horizontal scrolling
-       gantt.config.scales = [
-         // Configure the Gantt chart to use a monthly scale
-    {unit: "month", step: 1, format: "%F, %Y"},
-];
-        
-        // Initialize the Gantt chart
-        gantt.init(chartElement);
+                gantt.init(chartElement);
 
+                gantt.parse({ data: this.tasks });
 
-        // Load the tasks into the Gantt chart
-        gantt.parse({ data: this.tasks });
-
-        console.log('Gantt chart rendered');
-    }
-}
-
-
-
-
-
-
+                console.log('Gantt chart rendered');
+            }
+        }
     }
 
     customElements.define('gantt-chart-widget', GanttChartWidget);
