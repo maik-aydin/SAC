@@ -143,11 +143,9 @@ _renderChart() {
      // Set fit_tasks to false to enable horizontal scrolling
        gantt.config.scales = [
          // Configure the Gantt chart to use a monthly scale
-    {unit: "year", step: 1, format: "%Y"},
     {unit: "month", step: 1, format: "%F, %Y"},
-    {unit: "day", step: 1, format: "%D", css:daysStyle }
 ];
-
+        
         // Initialize the Gantt chart
         gantt.init(chartElement);
 
