@@ -148,9 +148,6 @@ _renderChart() {
     {unit: "day", step: 1, format: "%D", css:daysStyle }
 ];
 
-        gantt.config.date_format = "%Y-%m-%d"; // Datumsformat für Start- und Enddaten
-        gantt.init("gantt_here");
-
         // Initialize the Gantt chart
         gantt.init(chartElement);
 
