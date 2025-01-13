@@ -144,8 +144,6 @@ _renderChart() {
        gantt.config.scales = [
          // Configure the Gantt chart to use a monthly scale
     {unit: "month", step: 1, format: "%F, %Y"},
-    {unit: "week", step: 1, format: weekScaleTemplate},
-    {unit: "day", step: 1, format: "%D", css:daysStyle }
 ];
         
         // Initialize the Gantt chart
