@@ -49,7 +49,7 @@
             ${Array.from({ length: depths }, (_, i) => createDepthHTML(i)).join('')}
             <div class="layoutIterations">
                 <label>Layout Iterations:</label>
-                <input id="layoutIterations" type="number" name="layoutIterations" min="-1" value="${defaultSettings.layoutIterations}" />
+                <input id="layoutIterations" type="number" name="layoutIterations" min="0" value="${defaultSettings.layoutIterations}" />
             </div>
             <p>Terms of Use</p>
         </div>
