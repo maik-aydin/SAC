@@ -171,7 +171,7 @@ var getScriptPromisify = (src) => {
             data: nodes,
             links: links,
             levels: levels,
-            layoutIterations: 32,
+            layoutIterations: props.layoutIterations || 32, // Neuer Parameter für layoutIterations
             lineStyle: { curveness: 0.7 },
             emphasis: {
               focus: "adjacency",
