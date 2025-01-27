@@ -171,7 +171,7 @@ var getScriptPromisify = (src) => {
             data: nodes,
             links: links,
             levels: levels,
-            layoutIterations: 0,
+            layoutIterations: 32,
             lineStyle: { curveness: 0.7 },
             emphasis: {
               focus: "adjacency",
