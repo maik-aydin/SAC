@@ -136,7 +136,9 @@
 
             // Aktualisieren für layoutIterations
             const layoutIterationsInput = this._shadowRoot.getElementById("layoutIterations");
-            layoutIterationsInput.value = this._props.layoutIterations !== undefined ? this._props.layoutIterations : defaultSettings.layoutIterations;
+            layoutIterationsInput.value = this._props.layoutIterations !== undefined 
+                ? this._props.layoutIterations 
+                : defaultSettings.layoutIterations;
         }
 
         onDepthSettingsChanged(depth, event) {
