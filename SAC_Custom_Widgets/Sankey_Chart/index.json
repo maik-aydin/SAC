@@ -10,7 +10,8 @@
   "supportsLinkedAnalysisFilterOnSelection": true,
   "name": "Sankey Chart",
   "newInstancePrefix": "SankeyChart",
-  "description": "This is a Sankey Chart based on Apache ECharts Library (https://echarts.apache.org).",  "webcomponents": [
+  "description": "This is a Sankey Chart based on Apache ECharts Library (https://echarts.apache.org).",
+  "webcomponents": [
     {
       "kind": "main",
       "tag": "com-sap-sac-sample-echarts-sankey3",
@@ -34,6 +35,10 @@
     "height": {
       "type": "integer",
       "default": 320
+    },
+    "layoutIterations": {
+      "type": "integer",
+      "default": 32
     },
     "depth0Settings": {
       "type": "stylingSetting",
