@@ -171,7 +171,7 @@ var getScriptPromisify = (src) => {
             data: nodes,
             links: links,
             levels: levels,
-            layoutIterations: parseInt(props.layoutIterations, 10) -1 || 32, // Sicherstellen, dass es eine Ganzzahl ist
+            layoutIterations: parseInt(props.layoutIterations -1, 10) || 32, // Sicherstellen, dass es eine Ganzzahl ist
             lineStyle: { curveness: 0.7 },
             emphasis: {
               focus: "adjacency",
