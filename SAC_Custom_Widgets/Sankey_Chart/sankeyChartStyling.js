@@ -153,7 +153,14 @@
         }
 
         onLayoutIterationsChanged(event) {
-            const layoutIterations = parseInt(event.target.value, 10);
+            let layoutIterations = parseInt(event.target.value, 10);
+
+            // Validierung: Wert auf 0 begrenzen, wenn er kleiner ist
+            if (layoutIterations < 0) {
+                layoutIterations = 0;
+                event.target.value = 0; // Setze den Wert im Eingabefeld zurück auf 0
+            }
+
             this.dispatchEvent(new CustomEvent("propertiesChanged", { detail: { properties: { layoutIterations } } }));
         }
     }
