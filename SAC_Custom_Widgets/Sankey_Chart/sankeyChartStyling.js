@@ -9,7 +9,7 @@
   const createDepthHTML = (depth) => `
     <div class="depthSettings">
       <div class="depth">
-        <label>Depth ${depth}</label>
+        <label>Level ${depth+1}</label>
       </div>
       <div class="settings">
         <div>
