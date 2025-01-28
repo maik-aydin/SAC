@@ -37,7 +37,7 @@
       "default": 320
     },
     "layoutIterations": {
-      "type": "integer",
+      "type": "stylingSetting",
       "default": 32
     },
     "depth0Settings": {
