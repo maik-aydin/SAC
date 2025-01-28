@@ -1,4 +1,5 @@
 (function () {
+  const depths = 4; // Anzahl der Tiefenebenen
   const defaultSettings = {
       itemColor: "#7fbfb9",
       lineOpacity: 0.6,
@@ -9,7 +10,7 @@
   const createDepthHTML = (depth) => `
   <div class="depthSettings">
       <div class="depth">
-          <label>Depth ${depth}</label>
+          <label>Level ${depth+1}</label>
       </div>
       <div class="settings">
           <div>
@@ -36,7 +37,7 @@
   </div>
 `;
 
-const generateTemplateHTML = (depths) => `
+const templateHTML = `
 <style>
   .depthSettings { margin: 0.75rem 0; }
   .depth { font-size: 18px; }
@@ -94,26 +95,9 @@ class SankeyChartStylingPanel extends HTMLElement {
 constructor() {
   super();
   this._shadowRoot = this.attachShadow({ mode: "open" });
+  this._shadowRoot.innerHTML = templateHTML;
+
   this._props = {};
-  this.render();
-}
-
-connectedCallback() {
-  this.initializeDefaultValues();
-}
-
-onCustomWidgetBeforeUpdate(changedProps) {
-  this._props = { ...this._props, ...changedProps };
-  this.render();
-}
-
-onCustomWidgetAfterUpdate() {
-  this.render();
-}
-
-render() {
-  const depths = this._props.selectedDimensions ? this._props.selectedDimensions.length : 4;
-  this._shadowRoot.innerHTML = generateTemplateHTML(depths);
 
   // Event Listener for all depth levels
   Array.from({ length: depths }, (_, index) => `depth${index}`).forEach((depthId, index) => {
@@ -136,9 +120,21 @@ render() {
   this._shadowRoot.getElementById("labelPosition").addEventListener("change", this.onLabelPositionChanged.bind(this));
 }
 
+connectedCallback() {
+  this.initializeDefaultValues();
+}
+
+onCustomWidgetBeforeUpdate(changedProps) {
+  this._props = { ...this._props, ...changedProps };
+  this.updateFields();
+}
+
+onCustomWidgetAfterUpdate() {
+  this.updateFields();
+}
+
 initializeDefaultValues() {
   // Initialize default values for depth settings
-  const depths = this._props.selectedDimensions ? this._props.selectedDimensions.length : 4;
   Array.from({ length: depths }, (_, index) => `depth${index}`).forEach((depthId) => {
     const itemColorInput = this._shadowRoot.getElementById(`${depthId}_itemColor`);
     const lineOpacityInput = this._shadowRoot.getElementById(`${depthId}_lineOpacity`);
@@ -166,6 +162,39 @@ initializeDefaultValues() {
   // Initialize labelPosition
   const labelPositionInput = this._shadowRoot.getElementById("labelPosition");
   if (!labelPositionInput.value) labelPositionInput.value = "right";
+}
+
+updateFields() {
+  // Update fields for depth settings
+  Array.from({ length: depths }, (_, index) => `depth${index}`).forEach((depthId) => {
+    const settings = this._props[`${depthId}Settings`] || {};
+
+    const itemColorInput = this._shadowRoot.getElementById(`${depthId}_itemColor`);
+    const lineOpacityInput = this._shadowRoot.getElementById(`${depthId}_lineOpacity`);
+    const textColorInput = this._shadowRoot.getElementById(`${depthId}_textColor`);
+
+    itemColorInput.value = settings.itemColor !== undefined ? settings.itemColor : itemColorInput.value || defaultSettings.itemColor;
+    lineOpacityInput.value = settings.lineOpacity !== undefined ? settings.lineOpacity : itemColorInput.value || defaultSettings.lineOpacity;
+    textColorInput.value = settings.textColor !== undefined ? settings.textColor : textColorInput.value || defaultSettings.textColor;
+  });
+
+  // Update layoutIterations
+  const layoutIterationsInput = this._shadowRoot.getElementById("layoutIterations");
+  layoutIterationsInput.value = this._props.layoutIterations !== undefined ? this._props.layoutIterations : defaultSettings.layoutIterations;
+  this._shadowRoot.getElementById("layoutIterationsValue").innerText = layoutIterationsInput.value;
+
+  // Update orient
+  const orientInput = this._shadowRoot.getElementById("orient");
+  orientInput.value = this._props.orient !== undefined ? this._props.orient : "horizontal";
+
+  // Update curveness
+  const curvenessInput = this._shadowRoot.getElementById("curveness");
+  curvenessInput.value = this._props.curveness !== undefined ? this._props.curveness : "0.7";
+  this._shadowRoot.getElementById("curvenessValue").innerText = curvenessInput.value;
+
+  // Update labelPosition
+  const labelPositionInput = this._shadowRoot.getElementById("labelPosition");
+  labelPositionInput.value = this._props.labelPosition !== undefined ? this._props.labelPosition : "right";
 }
 
 onDepthSettingsChanged(depth, event) {
