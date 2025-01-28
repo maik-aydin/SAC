@@ -40,6 +40,11 @@
       "type": "integer",
       "default": 32
     },
+    "orient": {
+      "type": "string",
+      "enum": ["horizontal", "vertical"],
+      "default": "horizontal"
+    },
     "depth0Settings": {
       "type": "stylingSetting",
       "default": {"itemColor": "#7fbfb9", "lineOpacity": 0.6, "textColor": "#000000"}
