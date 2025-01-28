@@ -44,10 +44,10 @@
     .settings { color: #666; font-size: 14px; }
     .settings label { display: inline-block; line-height: 1.75rem; width: 5.625rem; }
     .settings input { color: #333; line-height: 1.25rem; }
-    .layoutIterations { margin-bottom: 1rem; }
-    .orient { margin-bottom: 1rem; }
-    .curveness { margin-bottom: 1rem; }
-    .labelPosition { margin-bottom: 1rem; }
+    .layoutIterations { margin-bottom: 10rem; }
+    .orient { margin-bottom: 10rem; }
+    .curveness { margin-bottom: 10rem; }
+    .labelPosition { margin-bottom: 10rem; }
   </style>
   <div>
     ${Array.from({ length: depths }, (_, i) => createDepthHTML(i)).join('')}
