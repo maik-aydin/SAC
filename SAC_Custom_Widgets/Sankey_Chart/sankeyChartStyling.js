@@ -58,6 +58,11 @@
         <option value="vertical">Vertical</option>
       </select>
     </div>
+    <div class="curveness">
+      <label>Curveness:</label>
+      <input id="curveness" type="range" name="curveness" min="0" max="1" step="0.1" value="0.7" />
+      <span id="curvenessValue">0.7</span>
+    </div>
     <p>Terms of Use</p>
   </div>
 `;
@@ -83,6 +88,9 @@ class SankeyChartStylingPanel extends HTMLElement {
 
     // Event Listener for orient
     this._shadowRoot.getElementById("orient").addEventListener("change", this.onOrientChanged.bind(this));
+
+    // Event Listener for curveness
+    this._shadowRoot.getElementById("curveness").addEventListener("input", this.onCurvenessChanged.bind(this));
   }
 
   connectedCallback() {
@@ -117,6 +125,11 @@ class SankeyChartStylingPanel extends HTMLElement {
     // Initialize orient
     const orientInput = this._shadowRoot.getElementById("orient");
     if (!orientInput.value) orientInput.value = "horizontal";
+
+    // Initialize curveness
+    const curvenessInput = this._shadowRoot.getElementById("curveness");
+    if (!curvenessInput.value) curvenessInput.value = "0.7";
+    this._shadowRoot.getElementById("curvenessValue").innerText = curvenessInput.value;
   }
 
   updateFields() {
@@ -140,6 +153,11 @@ class SankeyChartStylingPanel extends HTMLElement {
     // Update orient
     const orientInput = this._shadowRoot.getElementById("orient");
     orientInput.value = this._props.orient !== undefined ? this._props.orient : "horizontal";
+
+    // Update curveness
+    const curvenessInput = this._shadowRoot.getElementById("curveness");
+    curvenessInput.value = this._props.curveness !== undefined ? this._props.curveness : "0.7";
+    this._shadowRoot.getElementById("curvenessValue").innerText = curvenessInput.value;
   }
 
   onDepthSettingsChanged(depth, event) {
@@ -169,6 +187,12 @@ class SankeyChartStylingPanel extends HTMLElement {
   onOrientChanged(event) {
     const orient = event.target.value;
     this.dispatchEvent(new CustomEvent("propertiesChanged", { detail: { properties: { orient } } }));
+  }
+
+  onCurvenessChanged(event) {
+    const curveness = event.target.value;
+    this._shadowRoot.getElementById("curvenessValue").innerText = curveness;
+    this.dispatchEvent(new CustomEvent("propertiesChanged", { detail: { properties: { curveness } } }));
   }
 }
 
