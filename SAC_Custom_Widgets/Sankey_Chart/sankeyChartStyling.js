@@ -4,7 +4,7 @@
         itemColor: "#7fbfb9",
         lineOpacity: 0.6,
         textColor: "#000000",
-        layoutIterations: 32, // Standardwert für layoutIterations
+        layoutIterations: 25, // Standardwert für layoutIterations
     };
 
     const createDepthHTML = (depth) => `
@@ -53,7 +53,8 @@
     ${Array.from({ length: depths }, (_, i) => createDepthHTML(i)).join('')}
     <div class="layoutIterations">
       <label>Layout Iterations:</label>
-      <input id="layoutIterations" type="number" name="layoutIterations" min="0" value="${defaultSettings.layoutIterations}" />
+      <input id="layoutIterations" type="range" name="layoutIterations" min="0" max="50" step="1" value="25" />
+      <span id="layoutIterationsValue">25</span>
     </div>
     <div class="orient">
       <label>Orient:</label>
@@ -146,6 +147,7 @@ class SankeyChartStylingPanel extends HTMLElement {
     // Initialize layoutIterations
     const layoutIterationsInput = this._shadowRoot.getElementById("layoutIterations");
     if (!layoutIterationsInput.value) layoutIterationsInput.value = defaultSettings.layoutIterations;
+    this._shadowRoot.getElementById("layoutIterationsValue").innerText = layoutIterationsInput.value;
 
     // Initialize orient
     const orientInput = this._shadowRoot.getElementById("orient");
