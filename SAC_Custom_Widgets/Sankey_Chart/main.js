@@ -130,6 +130,7 @@ var getScriptPromisify = (src) => {
             opacity: props[`depth${depth}Settings`]?.lineOpacity || (0.6 - depth * 0.2),
           },
           label: {
+            position: props.labelPosition || "right",
             color: props[`depth${depth}Settings`]?.textColor || "#FFFFFF",
             formatter: (params) => {
               const formattedValue = (params.data.value || 0).toLocaleString("de-DE", {

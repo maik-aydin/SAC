@@ -48,6 +48,10 @@
       "type": "number",
       "default": 0.7
     },
+    "labelPosition": {
+      "type": "string",
+      "default": "right"
+    },
     "depth0Settings": {
       "type": "stylingSetting",
       "default": {"itemColor": "#7fbfb9", "lineOpacity": 0.6, "textColor": "#000000"}

@@ -63,6 +63,24 @@
       <input id="curveness" type="range" name="curveness" min="0" max="1" step="0.1" value="0.7" />
       <span id="curvenessValue">0.7</span>
     </div>
+    <div class="labelPosition">
+      <label>Label Position:</label>
+      <select id="labelPosition" name="labelPosition">
+        <option value="top">Top</option>
+        <option value="left">Left</option>
+        <option value="right" selected>Right</option>
+        <option value="bottom">Bottom</option>
+        <option value="inside">Inside</option>
+        <option value="insideLeft">Inside Left</option>
+        <option value="insideRight">Inside Right</option>
+        <option value="insideTop">Inside Top</option>
+        <option value="insideBottom">Inside Bottom</option>
+        <option value="insideTopLeft">Inside Top Left</option>
+        <option value="insideBottomLeft">Inside Bottom Left</option>
+        <option value="insideTopRight">Inside Top Right</option>
+        <option value="insideBottomRight">Inside Bottom Right</option>
+      </select>
+    </div>
     <p>Terms of Use</p>
   </div>
 `;
@@ -91,6 +109,9 @@ class SankeyChartStylingPanel extends HTMLElement {
 
     // Event Listener for curveness
     this._shadowRoot.getElementById("curveness").addEventListener("input", this.onCurvenessChanged.bind(this));
+
+    // Event Listener for labelPosition
+    this._shadowRoot.getElementById("labelPosition").addEventListener("change", this.onLabelPositionChanged.bind(this));
   }
 
   connectedCallback() {
@@ -130,6 +151,10 @@ class SankeyChartStylingPanel extends HTMLElement {
     const curvenessInput = this._shadowRoot.getElementById("curveness");
     if (!curvenessInput.value) curvenessInput.value = "0.7";
     this._shadowRoot.getElementById("curvenessValue").innerText = curvenessInput.value;
+
+    // Initialize labelPosition
+    const labelPositionInput = this._shadowRoot.getElementById("labelPosition");
+    if (!labelPositionInput.value) labelPositionInput.value = "right";
   }
 
   updateFields() {
@@ -158,6 +183,10 @@ class SankeyChartStylingPanel extends HTMLElement {
     const curvenessInput = this._shadowRoot.getElementById("curveness");
     curvenessInput.value = this._props.curveness !== undefined ? this._props.curveness : "0.7";
     this._shadowRoot.getElementById("curvenessValue").innerText = curvenessInput.value;
+
+    // Update labelPosition
+    const labelPositionInput = this._shadowRoot.getElementById("labelPosition");
+    labelPositionInput.value = this._props.labelPosition !== undefined ? this._props.labelPosition : "right";
   }
 
   onDepthSettingsChanged(depth, event) {
@@ -193,6 +222,11 @@ class SankeyChartStylingPanel extends HTMLElement {
     const curveness = event.target.value;
     this._shadowRoot.getElementById("curvenessValue").innerText = curveness;
     this.dispatchEvent(new CustomEvent("propertiesChanged", { detail: { properties: { curveness } } }));
+  }
+
+  onLabelPositionChanged(event) {
+    const labelPosition = event.target.value;
+    this.dispatchEvent(new CustomEvent("propertiesChanged", { detail: { properties: { labelPosition } } }));
   }
 }
 
