@@ -15,7 +15,7 @@
       <div class="settings">
           <div>
               <label>Color:</label>
-              <input id="depth${depth}_itemColor" type="text" name="color" />
+              <input id="depth${depth}_itemColor" type="color" name="color" />
           </div>
           <div>
               <label class="lineOpacity">Line Opacity:</label>
@@ -23,7 +23,7 @@
           </div>
           <div>
               <label>Text Color:</label>
-              <input id="depth${depth}_textColor" type="text" name="textColor" />
+              <input id="depth${depth}_textColor" type="color" name="textColor" />
           </div>
           <div>
               <label>Line Color:</label>
