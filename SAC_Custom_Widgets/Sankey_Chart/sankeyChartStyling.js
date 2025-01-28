@@ -39,7 +39,7 @@
 
   const templateHTML = `
   <style>
-    .depthSettings { margin: 0.75rem 0; }
+    .depthSettings { margin: 1.75rem 0; }
     .depth { font-size: 18px; }
     .settings { color: #666; font-size: 14px; }
     .settings label { display: inline-block; line-height: 1.75rem; width: 5.625rem; }
