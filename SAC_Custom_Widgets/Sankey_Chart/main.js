@@ -175,7 +175,7 @@ var getScriptPromisify = (src) => {
             layoutIterations: parseInt(props.layoutIterations -1, 10) || 32, // Sicherstellen, dass es eine Ganzzahl ist
             orient: props.orient || "horizontal",
             lineStyle: { curveness: props.curveness || 0.7 },
-            nodeAlign: "right",
+            nodeAlign: "left",
             emphasis: {
               focus: "adjacency",
               blurScope: "global",
